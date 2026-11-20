@@ -19,6 +19,20 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # TEMPORARY: remove once the role assumes successfully
+      - name: Debug OIDC subject and variables
+        shell: bash
+        env:
+          ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+          REGION: ${{ vars.AWS_REGION }}
+        run: |
+          echo "AWS_ROLE_ARN='${ROLE_ARN}'"
+          echo "AWS_REGION='${REGION}'"
+          [ -z "$ROLE_ARN" ] && echo "WARNING: AWS_ROLE_ARN is EMPTY"
+          [ -z "$REGION" ] && echo "WARNING: AWS_REGION is EMPTY"
+          TOKEN=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=sts.amazonaws.com" | python3 -c "import json,sys; print(json.load(sys.stdin)['value'])")
+          python3 -c "import sys,json,base64; p=sys.argv[1].split('.')[1]; c=json.loads(base64.urlsafe_b64decode(p+'='*(-len(p)%4))); print('OIDC subject :', c['sub']); print('OIDC audience:', c['aud'])" "$TOKEN"
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
