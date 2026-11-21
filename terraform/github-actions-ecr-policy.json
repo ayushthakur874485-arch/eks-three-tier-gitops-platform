@@ -1,0 +1,30 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ECRAuthentication",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:GetAuthorizationToken"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "PushAndVerifyApplicationImages",
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:CompleteLayerUpload",
+        "ecr:DescribeImages",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage",
+        "ecr:UploadLayerPart"
+      ],
+      "Resource": [
+        "arn:aws:ecr:ap-south-1:661985535578:repository/task-backend",
+        "arn:aws:ecr:ap-south-1:661985535578:repository/task-frontend"
+      ]
+    }
+  ]
+}
