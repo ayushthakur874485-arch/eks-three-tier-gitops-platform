@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 661985535578.dkr.ecr.ap-south-1.amazonaws.com/task-frontend:3da392a8fe024b5be0a344b7264b90d6ce0bdeff
+          image: 661985535578.dkr.ecr.ap-south-1.amazonaws.com/task-frontend:ef80aee3a11552318f67877521e086a037fbc8a6
           ports:
             - containerPort: 80
           readinessProbe:
