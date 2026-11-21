@@ -12,3 +12,6 @@ dist/
 # Secrets / env
 .env
 *.pem
+
+terraform/*tfplan*
+terraform/.terraform/
