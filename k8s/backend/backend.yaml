@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 661985535578.dkr.ecr.ap-south-1.amazonaws.com/task-backend:55f678fd01eee3bc09c36c5f7e5eac76de496608
+          image: 661985535578.dkr.ecr.ap-south-1.amazonaws.com/task-backend:43e4d6421bddfd17058bd94ab163afb7569f26e1
           ports:
             - containerPort: 5000
           env:
