@@ -44,7 +44,7 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
-    addons = {
+  addons = {
     vpc-cni = {
       before_compute = true
     }
@@ -52,15 +52,16 @@ module "eks" {
       before_compute = true
     }
     coredns = {}
+    metrics-server = {}
   }
 
   eks_managed_node_groups = {
     general = {
       instance_types                 = ["t3.medium"]
       use_latest_ami_release_version = false
-      min_size                       = 1
-      max_size                       = 2
-      desired_size                   = 1
+      min_size                       = 2
+      max_size                       = 3
+      desired_size                   = 2
     }
   }
 
